@@ -1,0 +1,33 @@
+.container{
+    border: 5px solid blue;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* Căn nội dung theo flex-direction */
+    justify-content: center ;
+    align-items: center;
+
+     flex-wrap: wrap;  /*Tự động xuống dòng */
+
+    align-content: center; /*chỉnh nội dung ở bên trong items*/
+}
+
+.box{
+    width: 100px;
+    height: 100px;
+}
+
+.box1{
+    background-color: red;
+    
+}
+
+.box2{
+    background-color: gray;
+}
+
+.box3{
+    background-color: black;
+}

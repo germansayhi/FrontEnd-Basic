@@ -1,0 +1,31 @@
+.inline{
+    background-color: orange;
+
+    /* kích thước = inline */
+    display: inline;
+    /* wight height margin-top, margin-botton ko có tác dung */
+}
+
+.block{
+    background-color: lightblue;
+    
+    display: block;
+    /* kích thước = chiều rộng tối đa */
+    width: 100px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.inline-block{
+    background: lightgreen;
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.none{
+    display: none;
+}
