@@ -1,0 +1,157 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+:root {
+    --primary-color: gray;
+    --secondary-color: pink;
+}
+
+body {
+    background: rgba(0, 0, 0, 0.2) url(../ima/bg.jpg) center/cover no-repeat fixed;
+    color: white;
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.login-wrapper {
+    position: relative;
+    padding: 4rem 1.5rem 1rem 1.5rem;
+    border: 2px solid var(--secondary-color);
+    border-radius: 15px;
+    backdrop-filter: blur(25px);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    color: var(--secondary-color);
+    box-shadow: 5px 5px white;
+}
+
+.login-header {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    align-items: center;
+    justify-content: center;
+    padding: 0.1rem 1rem;
+    transform: translateX(-50%);
+    border-radius: 0px 0px 20px 20px;
+    background-color: var(--primary-color);
+    color: black;
+    font-size: clamp(1rem, 3vw, 2rem);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: clamp(0.5rem 2vw 3rem);
+    font-size: clamp(0.8rem 2vw 3rem);
+    gap: 1rem;
+}
+
+.input-wrapper {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 30px;
+    outline: none;
+    background: transparent;
+    color: var(--secondary-color);
+}
+
+.label {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    transition: 0.2s;
+}
+
+.input-field:focus~.label,
+.input-field:valid~.label {
+    top: 0%;
+    left: 0%;
+    padding: 0 10px;
+    border-radius: 30px;
+    background-color: var(--primary-color);
+    color: black;
+}
+
+.icon {
+    position: absolute;
+    top: 18px;
+    right: 25px;
+
+}
+
+.login-check {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.forgot {
+    font-size: clamp(0.7rem, 2vw, 0.8rem);
+}
+
+.input-login {
+    width: 100%;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 30px;
+    background-color: whitesmoke;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.9s;
+    animation: button-text 0.5s infinite;
+    box-shadow: 5px 5px black;
+}
+
+.input-login:hover {
+    background: var(--secondary-color);
+}
+
+.register {
+    text-align: center;
+}
+
+.register a {
+    font-weight: 500;
+}
+
+@keyframes button-text {
+    0% {
+        color: red;
+    }
+
+    50% {
+        color: blue;
+    }
+
+}
