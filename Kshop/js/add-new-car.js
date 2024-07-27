@@ -17,10 +17,10 @@ form.addEventListener("submit", function(event){
     this.reset();
 });
 
-const BASE_URL ="https://6686438b83c983911b016366.mockapi.io"
+const BASE_URL ="http://localhost:8080"
 
  async function create(){
-    const respone = await fetch(`${BASE_URL}/api/v1/car`,{
+    const respone = await fetch(`${BASE_URL}/api/v1/cars`,{
         method: "POST",
         headers:{
             "Content-Type": "application/json"

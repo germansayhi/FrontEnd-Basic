@@ -15,88 +15,85 @@ const form = document.getElementById
 ("car-update-form");
 const tbody = document.getElementById("cars")
 
-const BASE_URL ="https://6686438b83c983911b016366.mockapi.io"
+const BASE_URL ="http://localhost:8080"
 
 form.onsubmit = async function(event){
     event.preventDefault();
     await update();
     findAll();
     form.reset();
-};
+}
 
 findAll();
+
 async function findAll(){
     loading.style.display = "flex";
-    const reponse = await fetch(`${BASE_URL}/api/v1/car`,{
+    const reponse = await fetch(`${BASE_URL}/api/v1/cars`,{
         method: "GET",
         header:{
             "Content-Type" : "application/json"
-
         }
     });
     const body = await reponse.json();
-    showCars(body);
+    showCars(body.content);
     $("#loading").hide(1000);
-    // loading.style.display = "none";
+    //  loading.style.display = "none";
 }
 
-function showCars(cars){
-    tbody.innertHTML = "";
-    for(const car of cars){
-     const row = tbody.insertRow();
-     row.insertCell().textContent = car.licensePlate;
-     row.insertCell().textContent = car.repairDate;
-     row.insertCell().textContent = car.customerName;
-     row.insertCell().textContent = car.catalog;
-     row.insertCell().textContent = car.carMaker;
+function showCars(cars) {
+	tbody.innerHTML = "";
+	for (const car of cars) {
+		const row = tbody.insertRow();
+		row.insertCell().textContent = car.licensePlate;
+		row.insertCell().textContent = car.repairDate;
+		row.insertCell().textContent = car.customerName;
+		row.insertCell().textContent = car.catalog;
+		row.insertCell().textContent = car.carMaker;
 
-     const editButton = document.createElement("button");
-     editButton.textContent = "✍️";
-     editButton.onclick = function(){
-        formId.value = car.id;
-        formLicensePlate.value = car.licensePlate;
-        formRepairDate.value = car.repairDate;
-        formCustomerName.value = car.customerName;
-        formCatalog.value = car.catalog;
-        formCarMaker.value = car.carMaker;
-
-     };
-
-     const deleteButton = document.createElement("button");
-      deleteButton.textContent ="❌";
-      deleteButton.onclick = async function () {
-        const confirmed = confirm("Do you want to delete this car?");
-        if (confirmed) {
-            await deleteById(car.id);
-            tbody.removeChild(row);
-        }
-    };
-    row.insertCell().append(editButton, deleteButton);
-    }
+		const editButton = document.createElement("button");
+		editButton.textContent = "🖊";
+		editButton.onclick = function () {
+			formId.value = car.id;
+			formLicensePlate.value = car.licensePlate;
+			formRepairDate.value = car.repairDate;
+			formCustomerName.value = car.customerName;
+			formCatalog.value = car.catalog;
+			formCarMaker.value = car.carMaker;
+		};
+		const deleteButton = document.createElement("button");
+		deleteButton.textContent = "❌";
+		deleteButton.onclick = async function () {
+			const confirmed = confirm("Do you want to delete this car?");
+			if (confirmed) {
+				await deleteById(car.id);
+				tbody.removeChild(row);
+			}
+		};
+		row.insertCell().append(editButton, deleteButton);
+	}
 }
 
-async function update(){
-    const id = formId.value;
-    const response =await fetch(`${BASE_URL}/api/v1/car/$(id)`,{
-        method : "PUT",
-        header:{
-            "Content-Type" : "application/json"
-        },
-        body:JSON.stringify({
-            licensePlate: formLicensePlate.value,
-            repairDate : formRepairDate.value,
-            customerName : formCustomerName.value,
-            catalog : formCatalog.value,
-            carMaker : formCarMaker.value,
-        })
-    });
-    const body = await response.json();
-    console.log(body);
-    
+async function update() {
+	const id = formId.value;
+	const response = await fetch(`${BASE_URL}/api/v1/cars/${id}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			licensePlate: formLicensePlate.value,
+			repairDate: formRepairDate.value,
+			customerName: formCustomerName.value,
+			catalog: formCatalog.value,
+			carMaker: formCarMaker.value
+		})
+	});
+	const body = await response.json();
+	console.log(body);
 }
 
 async function deleteById(id) {
-    const response = await fetch(`${BASE_URL}/api/v1/car/${id}`, {
+    const response = await fetch(`${BASE_URL}/api/v1/cars/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
